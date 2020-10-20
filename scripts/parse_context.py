@@ -2,7 +2,7 @@ import re
 import pandas as pd
 import argparse
 from glob import glob
-
+import os
 
 def main(args):
     
@@ -11,7 +11,8 @@ def main(args):
 
     df = pd.DataFrame({0:[]})
     for i in g:
-        df = pd.concat([df, pd.read_csv(i, sep="\t", header=None)], axis=0)
+        if os.stat(i).st_size != 0:
+              df = pd.concat([df, pd.read_csv(i, sep="\t", header=None)], axis=0)
     df.index = [i for i in range(0, len(df))]
 
     model = df[0].str.split(":", expand=True)

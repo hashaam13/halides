@@ -43,7 +43,7 @@ rule get_context_data:
 		one='data/context/{halide}_context.tsv',
 		two='data/context/{halide}_context_AA.tsv'
 	threads: 4
-	shell: "python scripts/get_context.py -input_struct {input.struct} -input_filter {input.filter} -input_type structure -angstrem_radius 5 -output_full {output.one} &>/dev/null -output_AA {output.two} &>/dev/null -ligands y  -C 2 -prot y -sec_struct y -water n"
+	shell: "python scripts/get_context.py -input_struct {input.struct} -input_filter {input.filter} -input_type structure -angstrem_radius 5 -output_full {output.one} &>/dev/null -output_AA {output.two} &>/dev/null -ligands y  -C 2 -prot y -sec_struct y -water y"
 
 
 rule combine_final_data:
@@ -65,4 +65,4 @@ rule figures_plotting:
 		one="data/full_data.tsv",
 		two="data/full_data_AA.tsv"
 	output: directory('plots/')
-	shell: 'Rscript --vanilla scripts/figs.R {input.one} {input.two} {output} &>/dev/null '
+	shell: 'Rscript --vanilla scripts/figs.R {input.one} {input.two} {output}  '

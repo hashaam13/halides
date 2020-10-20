@@ -54,7 +54,7 @@ Input consist of PDB ID, which separeted by ```\n```:
 ```
 You should put the files in the directory ```data/pdb_ID/```, and give them a name according to a strict template ```pdb_entries_X.txt```, where ```X``` is (```F, Cl, Br, I```)
 ## Scripts description  
-1. rule PDB_parser(**PDB_parser.py**) - obtain pdb ID from PDB database
+1. rule PDB_par   ser(**PDB_parser.py**) - obtain pdb ID from PDB database
 2. rule fetch_structures (**fetch_structures.py**) - obtain structures from PDB;  
 3. rule filter (**filter.py**) - applies filters to PDB structures;  
 4. rule get_context_data (**get_context.py**) - applies filters to halide binding sites;   

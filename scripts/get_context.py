@@ -363,13 +363,16 @@ def main(args):
                     sites_dist_sort= sites_dist.sort_values(f'dist_{N}')
                     sites_dist_sort.index = np.arange(len(sites_dist_sort))
                     sites=pd.concat([sites,sites_dist_sort], axis=1)
-                    
-                    if  site_filter_dist(N,modern_subset3['dist'],sites):
+                    try:
+                      if  site_filter_dist(N,modern_subset3['dist'],sites):
                          
                          site_deleted+=1
                          # print(f'{halide_type} atom is skipped, similar haligen site around 5A have already been got')
                          
                          continue
+                    except:
+                         N=-1
+
                    
                     dssp_cod = list(map(lambda x : dssp_dict[x] , [str(modern_subset3.at[x,'chain_id'])+str(modern_subset3.at[x,'residue_number'])+str(modern_subset3.at[x,'residue_name'])  if str(modern_subset3.at[x,'chain_id'])+str(modern_subset3.at[x,'residue_number'])+str(modern_subset3.at[x,'residue_name']) in dssp_dict.keys() else 'X'  for x in range (len(modern_subset3))  ]))
                     dssp_cod_df = pd.DataFrame({'dssp_cod' : dssp_cod})
